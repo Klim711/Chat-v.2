@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link href="resources/css/styles.css" rel="stylesheet" >
+      <script src="resources/js/chat.js"></script>
+  </head>
+  <body class="body" onload="run();">
+      <div style=" width:800px; margin: auto;">
+
+          <div class="header">Space Chat
+              <h1 class="name-chat"></h1>
+              <div class="profile-box" >
+                 <div id="userName">Me</div>
+                  <textarea class="edit-name"  placeholder="Name"   maxlength="10"></textarea>
+                  <button type="button" class="btn btn-default btn-xs btn-change"  onclick="onClickChange()">Change</button>
+              </div>
+          </div>
+
+          <div class="chat-box">
+              <div class="messages"></div>
+              <div class="myMessage">
+                  <textarea class="textArea"  placeholder="Type your text here..."></textarea>
+                  <button type="button" class="btn btn-primary btn-send" onclick="onClickSendMessage()"><span class="glyphicon glyphicon-ok"></span> Send</button>
+              </div>
+              <div class="server-state">You are not in space</div>
+          </div>
+      </div>
+    </body>
+</html>

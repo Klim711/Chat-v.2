@@ -1,0 +1,160 @@
+body{
+    background-image: url(http://subtlepatterns.com/patterns/stardust.png);
+    padding: 20px;
+}
+
+.name-chat {
+    font-family:'Comic Sans MS';
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    display:inline-block;
+}
+
+.header {
+    margin-top: 20px;
+    background-image: url(http://subtlepatterns.com/patterns/old_moon.png);
+    width: 795px;
+    height: 70px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(2, 2, 2, 0.5),inset 0px 30px 30px rgba(18, 18, 18, 0.4);      
+    text-align: center;
+    border:groove;
+    font-family:'Comic Sans MS';
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    font-size: 36px;
+}
+
+.profile-box {
+    vertical-align: middle;
+    font-size: large;
+    width: 210px;
+    height: 65px;
+    float: right;
+    border:groove;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.edit-name {
+    outline: none;
+    font-size: small;
+    max-width: 80px;
+    height:28px;
+    resize: none;
+    border:inset;
+    border-radius: 10px;    
+    background-color:#EBEBEB;
+    display: inline-block;
+}
+
+.btn-change {
+    margin-bottom: 20px;
+}
+
+.chat-box {
+    background-image: url(http://subtlepatterns.com/patterns/old_moon.png);
+    width: 800px;
+    height: 510px;
+    margin-top: 10px;
+    border-radius: 10px;
+    display:inline-block;
+    box-shadow: 0 10px 15px rgba(2, 2, 2, 0.5),inset 0px 30px 30px rgba(18, 18, 18, 0.4);
+    border:groove;
+}
+
+.messages {
+    background-color: white;
+    width: 540px;
+    height: 400px;
+    margin-left: 20px;
+    margin-top: 20px;   
+    border:inset;
+    border-radius: 10px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+
+.oneMessage {
+    margin-top: 5px;
+    width:inherit - 10px;
+}
+.user-name {
+    color: cadetblue;
+    font-size: 15px;
+    margin-left: 10px;
+    height: inherit;
+    display: inline-block;
+}
+.text-message {
+    margin-left: 20px;
+    height:inherit;
+    max-width: 460px;
+    word-wrap: break-word;
+}
+
+.myMessage {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 580px;
+    height: 50px;
+    display:inline-block;
+}
+
+.textArea {
+    outline: none;
+    width: 430px;
+    height: inherit;
+    resize: none;
+    border:inset;
+    border-radius: 10px;    
+    background-color:#EBEBEB;
+}
+
+.btn-send {
+    display:inline-block;
+    margin-bottom: 40px;
+    margin-left: 20px;
+}
+
+.del-button{
+    margin-top: 3px;
+    margin-right: 10px;
+    float: right;
+    color:grey;
+}
+
+.change-message-button {    
+    margin-top: 3px;
+    margin-right: 10px;
+    float: right;
+    color: grey;
+}
+
+.temp-area { 
+    width: 470px;
+    border: 0px;
+    margin-left: 10px;
+    height:inherit;
+    resize: vertical;
+    max-width: 470px;
+    display: inline-block;    
+    background-color:#EBEBEB;
+}
+
+.select {
+    background-color:beige;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.server-state {
+    margin-left: 50px;
+    font-size: 12px;
+}
+
+.deleted {
+    margin-left: 10px;
+    font-size: 13px;
+    color: #98a597;
+}
