@@ -1,0 +1,23 @@
+body{
+    background-image: url(http://subtlepatterns.com/patterns/stardust.png);
+    padding: 20px;
+}
+
+.main{
+    padding-top: 80px;
+    margin-top: 200px;
+    margin-left: 400px;
+    width: 300px;
+    height: 220px;
+    background-image: url(http://subtlepatterns.com/patterns/old_moon.png);
+    border-radius: 150px;
+    box-shadow: 0 10px 15px rgba(2, 2, 2, 0.5),inset 0px 30px 30px rgba(18, 18, 18, 0.4);
+    text-align: center;
+    vertical-align: text-bottom;
+    border:groove;
+    text-align: center;
+    font-family:'Comic Sans MS';
+    text-shadow: 0px -20px 3px rgba(0, 0, 0, 0.5);
+    font-size: 40px;
+    color: rgba(43, 43, 43, 0);
+}
