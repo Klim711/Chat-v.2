@@ -10,7 +10,8 @@ var theMessage = function (str1, str2) {
         user: str1,
         text: str2,
         id: generateId(),
-        isDeleted: false
+        isDeleted: false,
+        date: null
     };
 };
 

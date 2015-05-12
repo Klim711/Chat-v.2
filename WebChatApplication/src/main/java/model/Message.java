@@ -1,10 +1,13 @@
 package model;
 
+import java.util.Date;
+
 public class Message {
     private String id;
     private String user;
     private String text;
     private Boolean isDeleted;
+    private String date;
 
     public Message() {
     }
@@ -14,6 +17,14 @@ public class Message {
         this.user = user;
         this.text = text;
         this.isDeleted = b;
+    }
+
+    public Message(String id, String user, String text, Boolean isDeleted, String date) {
+        this.id = id;
+        this.user = user;
+        this.text = text;
+        this.isDeleted = isDeleted;
+        this.date = date;
     }
 
     public String getId() {
@@ -48,8 +59,20 @@ public class Message {
         this.isDeleted = isDeleted;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void sout() {
+        System.out.println(date + " " + user + " : " + text);
+    }
     @Override
     public String toString() {
-        return "{\"id\":\"" + id + "\",\"user\":\"" + user + "\",\"text\":\"" + text + "\",\"isDeleted\":" + isDeleted + "}";
+        return "{\"id\":\"" + id + "\",\"user\":\"" + user + "\",\"text\":\"" + text +
+                "\",\"isDeleted\":" + isDeleted + ",\"date\":\"" + date + "\"}";
     }
 }
