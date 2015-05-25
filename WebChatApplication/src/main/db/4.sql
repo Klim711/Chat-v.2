@@ -1,0 +1,1 @@
+select * from messages where user_id IN(1,2,3) and text like '%hello%';

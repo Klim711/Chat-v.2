@@ -31,6 +31,7 @@ function run() {
     
     var messages = document.getElementsByClassName("messages")[0];
     messages.addEventListener("click", messageEvent);
+
     
     loop();
     
@@ -296,6 +297,16 @@ function ajax(method, url, data, continueWith, continueWithError) {
         if(xhr.status != 200) {
             continueWithError('Error on the server side, response ' + xhr.status);
             return;
+        }
+
+        if(xhr.status == 400) {
+            window.location.assign("http://localhost:8080/chat/resources/errors/400-error.jsp");
+        }
+        if(xhr.status == 404) {
+            window.location.assign("http://localhost:8080/chat/resources/errors/404-error.jsp");
+        }
+        if(xhr.status == 500) {
+            window.location.assign("http://localhost:8080/chat/resources/errors/500-error.jsp");
         }
         isConnected(true, url);
         continueWith(xhr.responseText);
