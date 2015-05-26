@@ -5,6 +5,7 @@ import java.util.Date;
 public class Message {
     private String id;
     private String user;
+    private String user_id;
     private String text;
     private Boolean isDeleted;
     private String date;
@@ -45,6 +46,14 @@ public class Message {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public void setText(String text) {

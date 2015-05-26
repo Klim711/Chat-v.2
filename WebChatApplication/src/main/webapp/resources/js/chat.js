@@ -294,10 +294,6 @@ function ajax(method, url, data, continueWith, continueWithError) {
         if (xhr.readyState !== 4)
             return;
 
-        if(xhr.status != 200) {
-            continueWithError('Error on the server side, response ' + xhr.status);
-            return;
-        }
 
         if(xhr.status == 400) {
             window.location.assign("http://localhost:8080/chat/resources/errors/400-error.jsp");
@@ -308,6 +304,11 @@ function ajax(method, url, data, continueWith, continueWithError) {
         if(xhr.status == 500) {
             window.location.assign("http://localhost:8080/chat/resources/errors/500-error.jsp");
         }
+        if(xhr.status != 200) {
+            continueWithError('Error on the server side, response ' + xhr.status);
+            return;
+        }
+
         isConnected(true, url);
         continueWith(xhr.responseText);
     };    

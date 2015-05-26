@@ -1,10 +1,10 @@
 package controller;
 
 import model.Message;
-import model.MessageStorage;
 import util.ServletUtil;
 import util.XMLHistoryUtil;
-import util.MessageUtil;
+import dao.MessageDao;
+import dao.MessageDaoImpl;
 
 import static util.MessageUtil.MESSAGES;
 import static util.MessageUtil.TOKEN;
@@ -38,10 +38,12 @@ public class ChatServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static Logger logger = Logger.getLogger(ChatServlet.class.getName());
+    private MessageDao messageDao;
 
     @Override
     public void init() throws ServletException {
         try {
+            this.messageDao = new MessageDaoImpl();
             loadHistory();
         } catch (SAXException | IOException | ParserConfigurationException | TransformerException e) {
             logger.error(e);
@@ -54,17 +56,19 @@ public class ChatServlet extends HttpServlet {
         String token = request.getParameter(TOKEN);
         logger.info("Token " + token);
 
-        if (token != null && !"".equals(token)) {
-            int index = getIndex(token);
-            logger.info("Index " + index);
-            String messages = formResponse();
-            response.setContentType(ServletUtil.APPLICATION_JSON);
-            PrintWriter out = response.getWriter();
-            out.print(messages);
-            out.flush();
-        } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "'token' parameter needed");
-        }
+
+            if (token != null && !"".equals(token)) {
+                int index = getIndex(token);
+                logger.info("Index " + index);
+                String messages = formResponse();
+                //response.setCharacterEncoding(ServletUtil.UTF_8);
+                response.setContentType(ServletUtil.APPLICATION_JSON);
+                PrintWriter out = response.getWriter();
+                out.print(messages);
+                out.flush();
+            } else {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "'token' parameter needed");
+            }
     }
 
     @Override
@@ -84,6 +88,7 @@ public class ChatServlet extends HttpServlet {
             //MessageStorage.addMessage(message);
             XMLHistoryUtil.addData(message);
             response.setStatus(HttpServletResponse.SC_OK);
+            messageDao.add(message);
         } catch (ParseException | ParserConfigurationException | SAXException | TransformerException e) {
             logger.error(e);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
@@ -98,15 +103,8 @@ public class ChatServlet extends HttpServlet {
         try {
             JSONObject json = stringToJson(data);
             Message message = jsonToMessage(json);
-            String id = message.getId();
-            Message messageToUpdate = XMLHistoryUtil.getMessageById(id);
-            if (messageToUpdate != null) {
-                messageToUpdate.setText(message.getText());
-                XMLHistoryUtil.updateData(messageToUpdate);
-                response.setStatus(HttpServletResponse.SC_OK);
-            } else {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Task does not exist");
-            }
+            XMLHistoryUtil.updateData(message);
+            messageDao.update(message);
         } catch (ParseException | ParserConfigurationException | SAXException | TransformerException | XPathExpressionException e) {
             logger.error(e);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
@@ -121,15 +119,7 @@ public class ChatServlet extends HttpServlet {
         try {
             JSONObject json = stringToJson(data);
             Message message = jsonToMessage(json);
-            String id = message.getId();
-            Message messageToUpdate = XMLHistoryUtil.getMessageById(id);
-            if (messageToUpdate != null) {
-                messageToUpdate.setDeleted(message.isDeleted());
-                XMLHistoryUtil.updateData(messageToUpdate);
-                response.setStatus(HttpServletResponse.SC_OK);
-            } else {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Task does not exist");
-            }
+            XMLHistoryUtil.updateData(message);
         } catch (ParseException | ParserConfigurationException | SAXException | TransformerException | XPathExpressionException e) {
             logger.error(e);
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
@@ -155,6 +145,7 @@ public class ChatServlet extends HttpServlet {
         if (XMLHistoryUtil.doesStorageExist()) {
             ArrayList<Message> messages = new ArrayList<>();
             messages.addAll(XMLHistoryUtil.getMessages());
+            logger.info(messages);
             //MessageStorage.addAll(messages);
             for(int i = 0; i < messages.size(); ++i) {
                 messages.get(i).sout();
